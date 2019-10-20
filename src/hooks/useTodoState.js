@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import uuid from 'uuid/v4';
 
-
 const useTodoState = initialTodos => {
-
   const [todos, setTodos] = useState(initialTodos);
 
   const addTodo = newTodoText => {
@@ -36,10 +34,8 @@ const useTodoState = initialTodos => {
     addTodo,
     removeTodo,
     toggleTodo,
-    editTodo
-  }
-}
-
-
+    editTodo,
+  };
+};
 
 export default useTodoState;

@@ -5,11 +5,12 @@ import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 
 const TodoApp = () => {
-
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
-  const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(initialTodos);
+  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
+  const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
+    initialTodos
+  );
   useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos));
+    window.localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
   return (
