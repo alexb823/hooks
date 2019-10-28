@@ -4,7 +4,8 @@ const useLocalStorageState = (key, defaultValue) => {
   const [state, setState] = useState(() => {
     if (window.localStorage.getItem(key)) {
       return JSON.parse(window.localStorage.getItem(key));
-    } else {
+    }
+    else {
       return defaultValue;
     }
   });
