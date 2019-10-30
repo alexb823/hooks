@@ -10,10 +10,10 @@ from '@material-ui/core';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@material-ui/icons';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
-import { TodosContext } from './contexts/todosContext';
+import { DispatchContext } from './contexts/todosContext';
 
 const Todo = ({ id, task, completed }) => {
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   const [isEditing, toggleIsEditing] = useToggle(false);
 
   return (

@@ -4,7 +4,7 @@ import Todo from './Todo';
 import { TodosContext } from './contexts/todosContext';
 
 const TodoList = ({ removeTodo, toggleTodo, editTodo }) => {
-  const { todos } = useContext(TodosContext);
+  const todos = useContext(TodosContext);
 
   if (todos.length)
     return (
