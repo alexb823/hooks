@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, memo } from 'react';
 import {
   ListItem,
   ListItemText,
@@ -46,4 +46,4 @@ const Todo = ({ id, task, completed }) => {
   );
 };
 
-export default Todo;
+export default memo(Todo);
