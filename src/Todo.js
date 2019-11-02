@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { Fragment, useContext, memo } from 'react';
 import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
   Checkbox,
   IconButton,
-} from '@material-ui/core';
+}
+from '@material-ui/core';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@material-ui/icons';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
+import { DispatchContext } from './contexts/todosContext';
 
-const Todo = ({ id, task, completed, removeTodo, toggleTodo, editTodo }) => {
+const Todo = ({ id, task, completed }) => {
+  const dispatch = useContext(DispatchContext);
   const [isEditing, toggleIsEditing] = useToggle(false);
 
   return (
     <ListItem style={{ height: '64px' }}>
       {isEditing ? (
-        <EditTodoForm
-          editTodo={editTodo}
-          id={id}
-          task={task}
-          toggleIsEditing={toggleIsEditing}
-        />
+        <EditTodoForm id={id} task={task} toggleIsEditing={toggleIsEditing}/>
       ) : (
-        <>
+        <Fragment>
           <Checkbox
             checked={completed}
             tabIndex={-1}
-            onClick={() => toggleTodo(id)}
+            onClick={() => dispatch({type: 'TOGGLE', id: id})}
           />
           <ListItemText
             style={{ textDecoration: completed ? 'line-through' : 'none' }}
@@ -35,17 +33,17 @@ const Todo = ({ id, task, completed, removeTodo, toggleTodo, editTodo }) => {
             {task}
           </ListItemText>
           <ListItemSecondaryAction>
-            <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
+            <IconButton aria-label="Delete" onClick={() => dispatch({type: 'REMOVE', id: id})}>
               <DeleteIcon />
             </IconButton>
             <IconButton aria-label="Edit" onClick={toggleIsEditing}>
               <EditIcon />
             </IconButton>
           </ListItemSecondaryAction>
-        </>
+        </Fragment>
       )}
     </ListItem>
   );
 };
 
-export default Todo;
+export default memo(Todo);
